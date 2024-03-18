@@ -1,6 +1,6 @@
 {
   "name": "@brandonrbridges/nest-helpers",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A Collection of NestJS Helpers",
   "author": "Brandon Bridges",
   "main": "dist/main.js",
@@ -10,6 +10,10 @@
   },
   "scripts": {
     "build": "nest build",
+    "preversion": "git add . && git commit -m \"$npm_config_message\"",
+    "version": "npm run build",
+    "postversion": "git push origin main && git push --tags && npm publish",
+    "release": "npm run preversion && npm version \"$npm_config_version\" --message=\"Version %s - $npm_config_message\" && npm run postversion",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
